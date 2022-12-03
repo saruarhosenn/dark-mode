@@ -4,51 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Practice</title>
+    <title>Dark Mode Theme</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
-    <div class="container">
-      <div class="switch">
-        <input
-          type="checkbox"
-          name="checkboxTheme"
-          id="checkboxTheme"
-          onclick="changeTheme()"
-        />
-        <label for="checkboxTheme" class="info">light theme</label>
+    <button class="dark-btn" id="dark-theme-btn">
+      <img src="icon/moon.svg" alt="moon" id="dark-theme-icon" />
+    </button>
+    <section class="grid-section">
+      <div class="container">
+        <div class="col col-1">Header</div>
+        <div class="col col-2">Menu</div>
+        <div class="col col-3">Main</div>
+        <div class="col col-4">Right</div>
+        <div class="col col-5">Footer</div>
       </div>
-      <h1 class="title">Dark Mode</h1>
-      <h2 class="subtitle">Tutorial Simple Dark Mode</h2>
-      <p class="paragraph">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim rem
-        voluptatum voluptates quo adipisci corporis reiciendis nemo quae, ea
-        praesentium doloremque itaque atque dignissimos porro voluptate quidem.
-        Unde, earum tenetur?
-      </p>
-    </div>
+    </section>
 
     <script>
-      let currentTheme = "light";
-      const checkboxTheme = document.querySelector("#checkboxTheme");
-      const infoThemeActive = document.querySelector(".info");
-      const body = document.querySelector("body");
-
-      function changeTheme() {
-        currentTheme = checkboxTheme.checked ? "dark" : "light";
-        infoThemeActive.innerHTML = `${currentTheme} theme`;
-        body.dataset.theme = currentTheme;
-      }
-
-      /*==== You can save the user preference with local storage, so when a user visits your website for the second time, the theme will automatically adjust the last time the user picks it. ====*/
-
-      // define localStorage key
-      const localStorageThemeKey = "localStorageThemeKey";
-      // Getting the currentTheme from localStorage, when the localStorage return undefined will automatically set to light
-      const getCurrentTheme = localStorage.getItem(localStorageThemeKey) || "light";
-      // Save user input to the localStorage with localStorage key and currentTheme right now
-      localStorage.setItem(localStorageThemeKey, currentTheme);
+      let darkThemeBtn = document.getElementById("dark-theme-btn");
+      let darkThemeIcon = document.getElementById("dark-theme-icon");
+      darkThemeBtn.onclick = function () {
+        document.body.classList.toggle("dark-theme-active");
+        if (document.body.classList.contains("dark-theme-active")) {
+          darkThemeIcon.src = "icon/sun.svg";
+        } else {
+          darkThemeIcon.src = "icon/moon.svg";
+        };
+      };
     </script>
   </body>
 </html>
