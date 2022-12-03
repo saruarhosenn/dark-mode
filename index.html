@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="switch">
+        <input
+          type="checkbox"
+          name="checkboxTheme"
+          id="checkboxTheme"
+          onclick="changeTheme()"
+        />
+        <label for="checkboxTheme" class="info">light theme</label>
+      </div>
+      <h1 class="title">Dark Mode</h1>
+      <h2 class="subtitle">Tutorial Simple Dark Mode</h2>
+      <p class="paragraph">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim rem
+        voluptatum voluptates quo adipisci corporis reiciendis nemo quae, ea
+        praesentium doloremque itaque atque dignissimos porro voluptate quidem.
+        Unde, earum tenetur?
+      </p>
+    </div>
+
+    <script>
+      let currentTheme = "light";
+      const checkboxTheme = document.querySelector("#checkboxTheme");
+      const infoThemeActive = document.querySelector(".info");
+      const body = document.querySelector("body");
+
+      function changeTheme() {
+        currentTheme = checkboxTheme.checked ? "dark" : "light";
+        infoThemeActive.innerHTML = `${currentTheme} theme`;
+        body.dataset.theme = currentTheme;
+      }
+
+      /*==== You can save the user preference with local storage, so when a user visits your website for the second time, the theme will automatically adjust the last time the user picks it. ====*/
+
+      // define localStorage key
+      const localStorageThemeKey = "localStorageThemeKey";
+      // Getting the currentTheme from localStorage, when the localStorage return undefined will automatically set to light
+      const getCurrentTheme = localStorage.getItem(localStorageThemeKey) || "light";
+      // Save user input to the localStorage with localStorage key and currentTheme right now
+      localStorage.setItem(localStorageThemeKey, currentTheme);
+    </script>
+  </body>
+</html>
