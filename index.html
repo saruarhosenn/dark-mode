@@ -23,16 +23,36 @@
     </section>
 
     <script>
-      let darkThemeBtn = document.getElementById("dark-theme-btn");
-      let darkThemeIcon = document.getElementById("dark-theme-icon");
-      darkThemeBtn.onclick = function () {
-        document.body.classList.toggle("dark-theme-active");
+        let darkThemeBtn = document.getElementById("dark-theme-btn");
+        let darkThemeIcon = document.getElementById("dark-theme-icon");
+      
+        // Check if a theme preference is already stored in local storage
+        const storedTheme = localStorage.getItem("theme");
+        if (storedTheme === "dark") {
+        enableDarkMode();
+        } else if (storedTheme === "light") {
+        enableLightMode();
+        }
+
+        darkThemeBtn.onclick = function () {
         if (document.body.classList.contains("dark-theme-active")) {
-          darkThemeIcon.src = "icon/sun.svg";
+            enableLightMode();
         } else {
-          darkThemeIcon.src = "icon/moon.svg";
+            enableDarkMode();
+        }
         };
-      };
+        function enableDarkMode() {
+        document.body.classList.add("dark-theme-active");
+        darkThemeIcon.src = "images/Icons/moon.svg";
+        // Store the theme preference in local storage
+        localStorage.setItem("theme", "dark");
+        }
+        function enableLightMode() {
+        document.body.classList.remove("dark-theme-active");
+        darkThemeIcon.src = "images/Icons/sun.svg";
+        // Store the theme preference in local storage
+        localStorage.setItem("theme", "light");
+        }
     </script>
   </body>
 </html>
